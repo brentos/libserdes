@@ -20,11 +20,14 @@
 
 
 size_t serdes_serializer_framing_size (serdes_t *sd) {
+        fprintf(stderr, "serdes_serializer_framing_size\n");
         switch (sd->sd_conf.serializer_framing)
         {
         case SERDES_FRAMING_CP1:
+               fprintf(stderr, "CP1 framing\n");
                 return 1+4;  /* magic+schema_id */
         default:
+                fprintf(stderr, "No framing\n");
                 return 0;
         }
 }

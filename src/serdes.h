@@ -22,6 +22,10 @@
  * such as types and error codes.
  */
 #include "serdes-common.h"
+#include <jansson.h>
+#include <avro.h>
+#include <assert.h>
+#include <time.h>
 
 
 /* Private types, all access through methods */
@@ -286,6 +290,8 @@ serdes_t *serdes_new (serdes_conf_t *conf, char *errstr, size_t errstr_size);
 SERDES_EXPORT
 void serdes_destroy (serdes_t *serdes);
 
+SERDES_EXPORT
+void serdes_json_to_avro (char *buffer, int buffer_len, avro_schema_t schema, avro_value_t *val);
 
 
 
@@ -320,3 +326,5 @@ size_t serdes_framing_write (serdes_schema_t *schema, char *payload, size_t size
 ssize_t serdes_framing_read (serdes_t *sd, const void **payloadp, size_t *sizep,
                              serdes_schema_t **schemap,
                              char *errstr, int errstr_size);
+
+
